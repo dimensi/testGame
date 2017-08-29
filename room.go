@@ -7,7 +7,7 @@ type Room struct {
 	items     []string
 }
 
-var Rooms = map[string]Room{
+var rooms = map[string]Room{
 	"кухня": {
 		env:       "ты находишься на кухне, на столе чай, надо собрать рюкзак и идти в универ. можно пройти - коридор",
 		nextRooms: []string{"коридор"},

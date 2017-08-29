@@ -1,21 +1,32 @@
 package main
 
-import "strings"
-
 func main() {
 
 }
 
 func handleCommand(command string) string {
-	parsedCommand := ParserCommand(command)
+	parsedCommand := parserCommand(command)
 
 	var answer string
-	var err 
+	var err *gameError
+
 	switch cmd := parsedCommand.method; cmd {
 	case "lookAround":
-		return player.lookAround(&player.CurrentRoom)
+		answer = player.lookAround(&player.CurrentRoom)
 	case "goToRoom":
-		return player.goToRoom(parsedCommand.argument[0])
+		answer, err = player.goToRoom(parsedCommand.argument[0])
+	case "dressIt":
+		answer, err = player.dressIt(parsedCommand.argument[0])
+	case "takeIt":
+		answer, err = player.takeIt(parsedCommand.argument[0])
+	}
+
+	if err != nil {
+		return mapErrors[err.message]
+	}
+
+	if answer != "" {
+		return answer
 	}
 
 	return "неизвестная команда"

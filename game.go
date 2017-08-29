@@ -15,7 +15,7 @@ var mapOfMethods = map[string]string{
 	"применить":   "apply",
 }
 
-func ParserCommand(command string) *Command {
+func parserCommand(command string) *Command {
 	sliceStr := strings.Split(command, " ")
 
 	method := mapOfMethods[sliceStr[0]]
@@ -31,4 +31,18 @@ func ParserCommand(command string) *Command {
 	return newCommand
 }
 
-type UnknownCommandError error
+type gameError struct {
+	message string
+}
+
+var mapErrors = map[string]string{
+	"unknownCommandError": "неизвестная команда",
+	"noSuchThing":         "нет такого",
+	"noSuchRoom":          "нет пути в комната",
+	"noWherePut":          "некуда класть",
+}
+
+var unknownCommandError = gameError{"unknownCommandError"}
+var noSuchThing = gameError{"noSuchThing"}
+var noSuchRoom = gameError{"noSuchRoom"}
+var noWherePut = gameError{"noWherePut"}
