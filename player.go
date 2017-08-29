@@ -37,10 +37,18 @@ func (p *Player) lookAround(room *Room) string {
 	return room.env
 }
 
-func (p *Player) goToRoom(roomName string) string {
-	room := Rooms[roomName]
+func (p *Player) goToRoom(roomName string) string, UnknownCommandError {
+	room, ok := Rooms[roomName]
 
+	if !ok {
+		return "", UnknownCommandError
+	}
+	
 	p.CurrentRoom = room
 
-	return room.hello
+	return room.hello, nil
+}
+
+func (p *Player) dressIt(item string) string {
+	if (item ===)
 }

@@ -1,12 +1,10 @@
 package main
 
-import (
-	"strings"
-)
+import "strings"
 
 type Command struct {
 	method   string
-	argument string
+	argument []string
 }
 
 var mapOfMethods = map[string]string{
@@ -17,7 +15,7 @@ var mapOfMethods = map[string]string{
 	"применить":   "apply",
 }
 
-func parserCommand(command string) *Command {
+func ParserCommand(command string) *Command {
 	sliceStr := strings.Split(command, " ")
 
 	method := mapOfMethods[sliceStr[0]]
@@ -27,14 +25,10 @@ func parserCommand(command string) *Command {
 	}
 
 	if len(sliceStr) > 1 {
-		newCommand.argument = sliceStr[1]
+		newCommand.argument = sliceStr[1:]
 	}
 
 	return newCommand
 }
 
-func handleCommand(command string) string {
-	parsedCommand := parserCommand(command)
-
-	return parsedCommand.method
-}
+type UnknownCommandError error
