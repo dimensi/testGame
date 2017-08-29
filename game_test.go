@@ -38,7 +38,7 @@ func Test_parserCommand(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := ParserCommand(tt.args); !reflect.DeepEqual(got, tt.want) {
+			if got := parserCommand(tt.args); !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("parserCommand() = %v, want %v", got, tt.want)
 			}
 		})
