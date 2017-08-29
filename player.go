@@ -6,7 +6,9 @@ type Player struct {
 }
 
 func PlayerCreate() *Player {
-	player := &Player{}
+	player := &Player{
+		CurrentRoom: Rooms["кухня"],
+	}
 
 	return player
 }
@@ -27,6 +29,18 @@ func (p *PlayerPackage) Remove(name string) {
 	delete(p.items, name)
 }
 
-func (p *PlayerPackage) Get(name string) *Item {
+func (p *PlayerPackage) Get(name string) Item {
 	return p.items[name]
+}
+
+func (p *Player) lookAround(room *Room) string {
+	return room.env
+}
+
+func (p *Player) goToRoom(roomName string) string {
+	room := Rooms[roomName]
+
+	p.CurrentRoom = room
+
+	return room.hello
 }

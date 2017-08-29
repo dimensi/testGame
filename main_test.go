@@ -68,4 +68,3 @@ func TestGame0(t *testing.T) {
 	}
 
 }
-
