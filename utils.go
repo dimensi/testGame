@@ -30,19 +30,3 @@ func parserCommand(command string) *Command {
 
 	return newCommand
 }
-
-type gameError struct {
-	message string
-}
-
-var mapErrors = map[string]string{
-	"unknownCommandError": "неизвестная команда",
-	"noSuchThing":         "нет такого",
-	"noSuchRoom":          "нет пути в комната",
-	"noWherePut":          "некуда класть",
-}
-
-var unknownCommandError = gameError{"unknownCommandError"}
-var noSuchThing = gameError{"noSuchThing"}
-var noSuchRoom = gameError{"noSuchRoom"}
-var noWherePut = gameError{"noWherePut"}
